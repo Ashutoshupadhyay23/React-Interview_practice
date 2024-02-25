@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css'
 import { useEffect } from 'react';
 
+const ITEMS_PER_PAGE = 6;
 const API_ENDPOINT = 'https://hacker-news.firebaseio.com/v0';
 
 
@@ -45,7 +46,21 @@ function App() {
       itemsList = await response.json()
       setItemIds(itemsList)
     }
-    console.log(itemsList)
+    
+    const itemIdsForPage = itemsList.slice(
+      currPage*ITEMS_PER_PAGE,
+      currPage*ITEMS_PER_PAGE + ITEMS_PER_PAGE
+    )
+
+    const itemsForPage = await Promise.all(
+      itemIdsForPage.map(itemId => 
+        fetch(`${API_ENDPOINT}/item/${itemId}.json`).then(res => res.json())
+      )
+    )
+
+    setItems([...items, ...itemsForPage])
+    setFetchingDetails(false)
+
   }
 
   useEffect(() => {
@@ -56,8 +71,8 @@ function App() {
     <div className='app'>
       <h1 className='title'>Hacker news job boards</h1>
       {
-        items.length < 1 ? (
-          <p className='loading'>loading...</p>
+        (itemIds === null || items.length < 1) ? (
+          <p className='loading'>Loading...</p>
         ) : (
           <div>
 
@@ -67,7 +82,13 @@ function App() {
               })}
               
             </div>
-            <button className='loadmorebtn'>Load more</button>
+            <button 
+             className='loadmorebtn'
+             onClick={() => fetchItems(currentPage + 1)}
+             disabled={fetchingDetails}
+            >
+              {fetchingDetails ? 'Loading...' : 'Load more'}
+            </button>
           </div>
         )
       }

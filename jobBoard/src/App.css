@@ -81,3 +81,7 @@ a:hover{
 .loadmorebtn:hover{
   background-color: #e65c00;
 }
+
+.loadmorebtn:disabled{
+  background-color: grey;
+}
