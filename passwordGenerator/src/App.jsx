@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import usePasswordGenerator from './custom_hooks/usePasswordGenerator';
 
 function App() {
 
@@ -8,7 +9,7 @@ function App() {
     {title: 'Include Uppercase Letters', state: false},
     {title: 'Include Lowercase Letters', state: false},
     {title: 'Include Numbers', state: false},
-    {title: 'Include Symbols Letters', state: false},
+    {title: 'Include Symbols', state: false},
   ])
 
   const handleCheckboxChange = (i) => {
@@ -16,19 +17,22 @@ function App() {
     updateedCheckboxData[i].state = !updateedCheckboxData[i].state;
     setCheckBoxData(updateedCheckboxData);
   }
+
+  const {password, errorMessage, generatePassword} = usePasswordGenerator();
   
 
   return (
     <div className='container'>
+
       {/* Password text and copy */}
-      <div className='header'>
+      {password && (<div className='header'>
         <div className='title'>
-          Kg372@8
+          {password}
         </div>
         <button className='copyBtn' onClick={() => {}} >
           copy
         </button>
-      </div>
+      </div> )}
 
       {/* Character length  */}
       <div className='charLength'>
@@ -46,6 +50,7 @@ function App() {
         />
 
       </div>
+      
       {/* Checkboxes */}
       <div className='checkboxes'>
         {checkBoxData.map((checkbox, i) => {
@@ -57,9 +62,18 @@ function App() {
           )
         })}
       </div>
+
       {/* Strength */}
+
+      {/* Error Handling */}
+      {errorMessage && <div className='errorMessage'>
+        {errorMessage}
+      </div>}
+
       {/* Generate Button */}
-      <button className='generateBtn' onClick={() => {}}>Generate Password</button>
+      <button className='generateBtn' onClick={() => generatePassword(checkBoxData, length)}>
+        Generate Password
+      </button>
     </div>
   )
 }
