@@ -3,6 +3,7 @@ import './App.css'
 import usePasswordGenerator from './custom_hooks/usePasswordGenerator';
 import StrengthChecker from './components/StrengthChecker';
 import Button from './components/Button';
+import Checkbox from './components/Checkbox';
 
 function App() {
 
@@ -75,10 +76,18 @@ function App() {
       <div className='checkboxes'>
         {checkBoxData.map((checkbox, i) => {
           return (
-            <div key={i}>
-              <input type="checkbox" onChange={() => handleCheckboxChange(i)} checked={checkbox.state} />
-              <label> {checkbox.title} </label>
-            </div>
+            // <div key={i}>
+            //   <input type="checkbox" onChange={() => handleCheckboxChange(i)} checked={checkbox.state} />
+            //   <label> {checkbox.title} </label>
+            // </div>
+
+            <Checkbox 
+             title={checkbox.title}
+             key={i}
+             onChange={() => handleCheckboxChange(i)}
+             state={checkbox.state}
+            />
+            
           )
         })}
       </div>
