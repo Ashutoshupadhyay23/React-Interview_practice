@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import usePasswordGenerator from './custom_hooks/usePasswordGenerator';
 import StrengthChecker from './components/StrengthChecker';
+import Button from './components/Button';
 
 function App() {
 
@@ -41,9 +42,16 @@ function App() {
         <div className='title'>
           {password}
         </div>
-        <button className='copyBtn' onClick={handleCopy} >
+
+        {/* <button className='copyBtn' onClick={handleCopy} >
           {copied ? 'Copied' : 'copy'}
-        </button>
+        </button> */}
+
+        <Button
+         text={copied ? 'Copied' : 'copy'}
+         onClick={handleCopy}
+         customClass="copyBtn"
+        />
       </div> )}
 
       {/* Character length  */}
