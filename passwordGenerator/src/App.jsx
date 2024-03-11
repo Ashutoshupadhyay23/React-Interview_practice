@@ -92,9 +92,15 @@ function App() {
       </div>}
 
       {/* Generate Button */}
-      <button className='generateBtn' onClick={() => generatePassword(checkBoxData, length)}>
+      {/* <button className='generateBtn' onClick={() => generatePassword(checkBoxData, length)}>
         Generate Password
-      </button>
+      </button> */}
+
+      <Button
+         text="Generate Password"
+         onClick={() => generatePassword(checkBoxData, length)}
+         customClass="generateBtn"
+        />
     </div>
   )
 }
