@@ -73,3 +73,11 @@ button{
   color: red;
   padding-bottom: 5px;
 }
+
+.password-strength{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  color: white;
+}

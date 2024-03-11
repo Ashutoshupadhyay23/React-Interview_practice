@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import usePasswordGenerator from './custom_hooks/usePasswordGenerator';
+import StrengthChecker from './components/StrengthChecker';
 
 function App() {
 
@@ -75,6 +76,7 @@ function App() {
       </div>
 
       {/* Strength */}
+      <StrengthChecker password={password} />
 
       {/* Error Handling */}
       {errorMessage && <div className='errorMessage'>
