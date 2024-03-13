@@ -4,13 +4,14 @@ import Home from './pages/Home';
 import ProductListing from './pages/Product-Listing';
 import ProductDetails from './pages/Product-Details';
 
+
 function App() {
   
   return (
 
     <BrowserRouter>
       <div className='app'>
-        <h1>breadcrumbs</h1>
+        <h1>BreadCrumbs</h1>
 
         {/* breadcrumbs  */}
 
