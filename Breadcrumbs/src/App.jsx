@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from './pages/Home';
 import ProductListing from './pages/Product-Listing';
 import ProductDetails from './pages/Product-Details';
+import Breadcrumbs from './components/Breadcrumbs';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <h1>BreadCrumbs</h1>
 
         {/* breadcrumbs  */}
+        <Breadcrumbs />
 
         {/* routes  */}
         <Routes>
